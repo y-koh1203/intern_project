@@ -9,8 +9,16 @@
     <script src="main.js"></script>
 </head>
 <body>
-    <p>{{$name}}</p>
-    <p>{{$age}}</p>
-    <p>{{$id}}</p>
+    @foreach ($foods as $food)
+    <div>
+        <p><a href="#">{{$food->name}}</a></p>
+        <div>
+            <img src="{{ url('storage/images/'.$food->image_path1) }}" alt="">
+        </div>
+        <div>
+            <img src="{{ url('storage/images/'.$food->image_path2) }}" alt="">
+        </div>
+    </div>
+    @endforeach
 </body>
 </html>

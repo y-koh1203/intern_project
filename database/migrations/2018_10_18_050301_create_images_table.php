@@ -13,16 +13,7 @@ class CreateImagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('images', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-
-            $table->increments('id');
-            $table->string('foods_id');
-            $table->string('path')->unique();
-            $table->timestamps();
-
-            $table->foreign('foods_id')->references('id')->on('foods')->onDelete('cascade');
-        });
+    
     }
 
     /**

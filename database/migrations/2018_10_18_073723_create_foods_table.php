@@ -19,8 +19,12 @@ class CreateFoodsTable extends Migration
             $table->increments('id');
             $table->string('restaurant_id');
             $table->string('name');
+            $table->string('genre');
             $table->string('body');
             $table->integer('price');
+            $table->string('image_path1');
+            $table->string('image_path2');
+            $table->string('image_path3');
             $table->timestamps();
 
             $table->foreign('restaurant_id')->references('id')->on('restaurant')->onDelete('cascade');

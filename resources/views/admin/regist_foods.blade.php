@@ -42,8 +42,19 @@
                             {!! Form::label('restaurant_id','店舗名', ['class' => 'control-label']) !!}
                             <select name="restaurant_id" id="">
                                 @foreach ($data as $datum)
+                                    <option value="" selected></option>
                                     <option value="{{$datum->id}}">{{$datum->name}}</option>
                                 @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('genre', 'ジャンル', ['class' => 'control-label']) !!}
+                            <select name="genre" id="">
+                                    <option value="" selected></option>
+                                    <option value="1">和</option>
+                                    <option value="2">洋</option>
+                                    <option value="3">中</option>
                             </select>
                         </div>
 

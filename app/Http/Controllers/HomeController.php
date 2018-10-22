@@ -45,29 +45,27 @@ class HomeController extends Controller
         );
     }
 
-
     //飲食店の登録アクション
     public function registerFoods(Request $request){        
         $name = $request->input('name');
         $restaurant_id = $request->input('restaurant_id');
+        $genre = $request->input('genre');
         $body = $request->input('body');
         $price = $request->input('price');
 
-        // ここにトランザクション処理
-        // 画像と詳細がどっちもinsert成功した時のみcommit
-
-        // DB::beginTransaction();
-        // try {
-        //     $blog = Blog::find($id);
-        //     $blog->comments()->detach();
-        //     $blog->delete();
-        
-        //     DB::commit();
-        //     $success = true;
-        // } catch (\Exception $e) {
-        //     $success = false;
-        //     DB::rollback();
-        // }
+        switch($genre){
+            case 1:
+                $genre = '和';
+                break;
+            case 2:
+                $genre = '洋';
+                break;
+            case 3:
+                $genre = '中';
+                break;
+            default: 
+                break;
+        }
 
         //リクエスト中にファイルが存在していない場合のエラー
         if (!$request->hasFile('file')) {
@@ -77,29 +75,36 @@ class HomeController extends Controller
                 ->withErrors(['file' => '画像が未選択です。']);
         }
 
-        var_dump($name);
-        var_dump($restaurant_id);
-        var_dump($body);
-        var_dump($price);
-
-        // $id = DB::table('foods')->insertGetId([
-        //     ['restaurant_id' => $restaurant_id, 'name' => $name, 'body' => $body, 'price' => $price, 'created_at' => date("Y-m-d H:i:s", time()), 'updated_at' => date("Y-m-d H:i:s", time() )]
-        // ]);
-
+        $fn_list = [];
         //画像のupload
         foreach($request->file('file') as $file){
             if ($file->isValid([])) {
                 $filename = $file->store('public/images');
-    
-                DB::table('images')->insert([
-                    ['food_id' => 1, 'path' => $filename, 'created_at' => date("Y-m-d H:i:s", time()), 'updated_at' => date("Y-m-d H:i:s", time() )]
-                ]);
+                $filename = explode('/',$filename);
+                $fn_list[] = array_pop($filename);
             }else {
                 return redirect()
                     ->back()
                     ->withInput()
                     ->withErrors(['file' => '画像がアップロードされていないか不正なデータです。']);
             }
+        }
+
+        DB::beginTransaction();
+        try {
+            DB::table('foods')->insert([
+                ['restaurant_id' => $restaurant_id, 'name' => $name, 'genre'=>$genre, 'body' => $body, 'price' => $price,
+                'image_path1' => $fn_list[0], 'image_path2' => $fn_list[1], 'image_path3' => $fn_list[2], 
+                'created_at' => date("Y-m-d H:i:s", time()), 'updated_at' => date("Y-m-d H:i:s", time() )]
+            ]);
+        
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()
+            ->back()
+            ->withInput()
+            ->withErrors(['file' => '登録に失敗しました。']);
         }
 
         return redirect('/regist/foods')->with('success', '保存しました。');
@@ -114,9 +119,10 @@ class HomeController extends Controller
         $name = $request->post('name');
         $address = $request->post('address');
         $body = $request->post('body');
+        $url = $request->post('url');
 
         DB::table('restaurants')->insert([
-            ['name' => $name, 'address' => $address, 'body' => $body, 'created_at' => date("Y-m-d H:i:s", time()), 'updated_at' => date("Y-m-d H:i:s", time() )]
+            ['name' => $name, 'address' => $address, 'body' => $body, 'url' => $url, 'created_at' => date("Y-m-d H:i:s", time()), 'updated_at' => date("Y-m-d H:i:s", time() )]
         ]);
         return redirect('/regist/restaurant')->with('success', '保存しました。');
     }

@@ -48,6 +48,11 @@
                         </div>
 
                         <div class="form-group">
+                            {!! Form::label('url','URL', ['class' => 'control-label']) !!}
+                            {!! Form::text('url') !!}
+                        </div>
+
+                        <div class="form-group">
                             {!! Form::submit('登録', ['class' => 'btn btn-default']) !!}
                         </div>
 

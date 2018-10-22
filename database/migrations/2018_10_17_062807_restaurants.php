@@ -20,6 +20,7 @@ class Restaurants extends Migration
             $table->string('name');
             $table->string('address');
             $table->text('body');
+            $table->text('url');
             $table->timestamps();
         });
     }

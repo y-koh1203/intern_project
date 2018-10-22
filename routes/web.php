@@ -15,7 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/index/{id}', 'IndexController@index');
+// Route::get('/index/{id}', 'IndexController@index');
+Route::get('/index', 'IndexController@index');
 
 Route::get('/insert','InsertController@form');
 Route::post('/insert/process','InsertController@process');
