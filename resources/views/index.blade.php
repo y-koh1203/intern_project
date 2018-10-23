@@ -51,13 +51,13 @@
             <nav class="gnav">
                 <div class="gnav__wrap">
                     <ul class="gnav__menu">
-                        <li class="gnav__menu__item"><a href="#">和</a><div class="gnav__menu__background jp"></div></li>
-                        <li class="gnav__menu__item"><a href="#">洋</a><div class="gnav__menu__background us"></div></li>
-                        <li class="gnav__menu__item"><a href="#">中</a><div class="gnav__menu__background cn"></div></li>
+                        <li class="gnav__menu__item"><a href="/japanese">和</a><div class="gnav__menu__background jp"></div></li>
+                        <li class="gnav__menu__item"><a href="/western">洋</a><div class="gnav__menu__background us"></div></li>
+                        <li class="gnav__menu__item"><a href="/chinese">中</a><div class="gnav__menu__background cn"></div></li>
                     </ul>
                 </div><!--gnav-wrap-->
             </nav>
-            <h1><a href="index.html"><span class="space"><span class="initial">M</span>ina</span><span class="space"><span class="initial">M</span>ori</span><span class="initial">G</span>ourmet</a></h1>
+            <h1><a href="/"><span class="space"><span class="initial">M</span>ina</span><span class="space"><span class="initial">M</span>ori</span><span class="initial">G</span>ourmet</a></h1>
         </header>
         <article>
             <!-- Swiper -->

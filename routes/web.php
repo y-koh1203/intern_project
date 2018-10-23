@@ -11,20 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-// Route::get('/index/{id}', 'IndexController@index');
-Route::get('/index', 'IndexController@index');
-
-Route::get('/insert','InsertController@form');
-Route::post('/insert/process','InsertController@process');
+Route::get('/', 'IndexController@index');
+Route::get('/japanese', 'IndexController@sortJapanese');
+Route::get('/western', 'IndexController@sortWestern');
+Route::get('/chinese', 'IndexController@sortChinese');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('/upload', 'HomeController@upload');
+
+Route::get('/delete/foods','HomeController@deleteFoods');
+Route::post('/delete/foods/exec','HomeController@execDelete');
 
 Route::get('/regist/restaurant','HomeController@insertRestaurant');
 Route::post('/regist/restaurant/insert','HomeController@registerRestaurant');

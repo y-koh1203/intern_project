@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+                <div class="panel-heading">料理の削除</div>
 
                 <div class="panel-body">
                     @if (session('status'))
@@ -14,7 +14,9 @@
                         </div>
                     @endif
 
-                   <form action="/upload" method="post" enctype="multipart/form-data">
+                    <form action="/delete/foods/exec" method="post" enctype="multipart/form-data">
+
+                        {{ csrf_field() }}
 
                         {{--成功時のメッセージ--}}
                         @if (session('success'))
@@ -31,12 +33,26 @@
                             </div>
                         @endif
 
-                   
+                        @if(count($data) > 0)
                         <div class="form-group">
-                            {!! Form::submit('アップロード', ['class' => 'btn btn-default']) !!}
+                            {!! Form::label('name','料理名', ['class' => 'control-label']) !!}
+                            @foreach($data as $datum)
+                            <div>
+                                <input type="checkbox" name="foods[]" value="{{$datum->id}}">{{$datum->name}}
+                            </div>
+                            @endforeach
                         </div>
-                    {!! Form::close() !!}
+                        @else
+                        <div>削除できるデータがありません。</div>
+                        @endif
 
+                        @if(count($data) > 0)
+                        <div class="form-group">
+                            {!! Form::submit('削除', ['class' => 'btn btn-default']) !!}
+                        </div>
+                        @endif
+                     
+                    </form>
                 </div>
             </div>
         </div>

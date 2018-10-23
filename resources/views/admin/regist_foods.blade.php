@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+                <div class="panel-heading">料理の登録</div>
 
                 <div class="panel-body">
                     @if (session('status'))
@@ -41,9 +41,9 @@
                         <div class="form-group">
                             {!! Form::label('restaurant_id','店舗名', ['class' => 'control-label']) !!}
                             <select name="restaurant_id" id="">
+                                <option value="" selected></option>
                                 @foreach ($data as $datum)
-                                    <option value="" selected></option>
-                                    <option value="{{$datum->id}}">{{$datum->name}}</option>
+                                <option value="{{$datum->id}}">{{$datum->name}}</option>
                                 @endforeach
                             </select>
                         </div>

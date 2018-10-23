@@ -25,10 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('admin.home');
     }
 
-    //料理の登録画面を表示
+    // 料理の登録画面を表示
     public function insertFoods(){
         $restaurants = DB::table('restaurants');
         $data = $restaurants->get();
@@ -45,7 +45,7 @@ class HomeController extends Controller
         );
     }
 
-    //飲食店の登録アクション
+    // 料理の登録アクション
     public function registerFoods(Request $request){        
         $name = $request->input('name');
         $restaurant_id = $request->input('restaurant_id');
@@ -67,7 +67,7 @@ class HomeController extends Controller
                 break;
         }
 
-        //リクエスト中にファイルが存在していない場合のエラー
+        // リクエスト中にファイルが存在していない場合のエラー
         if (!$request->hasFile('file')) {
             return redirect()
                 ->back()
@@ -76,7 +76,7 @@ class HomeController extends Controller
         }
 
         $fn_list = [];
-        //画像のupload
+        // 画像のupload
         foreach($request->file('file') as $file){
             if ($file->isValid([])) {
                 $filename = $file->store('public/images');
@@ -110,11 +110,12 @@ class HomeController extends Controller
         return redirect('/regist/foods')->with('success', '保存しました。');
     }
 
-    //飲食店の登録画面を表示
+    // 飲食店の登録画面を表示
     public function insertRestaurant(){
         return view('admin.regist_restaurant');
     }
 
+    // 飲食店の登録アクション
     public function registerRestaurant(Request $request){
         $name = $request->post('name');
         $address = $request->post('address');
@@ -125,5 +126,33 @@ class HomeController extends Controller
             ['name' => $name, 'address' => $address, 'body' => $body, 'url' => $url, 'created_at' => date("Y-m-d H:i:s", time()), 'updated_at' => date("Y-m-d H:i:s", time() )]
         ]);
         return redirect('/regist/restaurant')->with('success', '保存しました。');
+    }
+
+    public function deleteFoods(){
+        $foods = DB::table('foods')->get();
+        return view('admin.delete_foods')->with([
+            'data' => $foods
+        ]);
+    }
+
+    public function execDelete(Request $request){
+        $del_foods_id = $request->post('foods');
+
+        DB::beginTransaction();
+        try {
+            foreach($del_foods_id as $id){
+                DB::table('foods')->where('id','=',$id)->delete();
+            }
+        
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()
+            ->back()
+            ->withInput()
+            ->withErrors(['foods' => '削除に失敗しました。']);
+        }
+
+        return redirect('/delete/foods')->with('success', '削除しました。');
     }
 }

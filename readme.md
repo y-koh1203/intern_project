@@ -2,8 +2,8 @@
 
 # usage
 1. clone
-2. `cd clone_dir`
-3. create database(db.sqlite)
+2. `$cd clone_dir`
+3. `$sqlite3 db.sqlite`
 4. `$php artisan migrate`
 5. `$php artisan serve`
 

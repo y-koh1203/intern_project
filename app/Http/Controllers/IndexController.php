@@ -13,5 +13,29 @@ class IndexController extends Controller
         return view('index')->with([
             'foods' => $foods
         ]);
-   }
+    }
+
+    public function sortJapanese(){
+        $foods = DB::table('foods')->where('genre','=','和')->get();
+
+        return view('index')->with([
+            'foods' => $foods
+        ]);
+    }
+
+    public function sortWestern(){
+        $foods = DB::table('foods')->where('genre','=','洋')->get();
+
+        return view('index')->with([
+            'foods' => $foods
+        ]);
+    }
+
+    public function sortChinese(){
+        $foods = DB::table('foods')->where('genre','=','中')->get();
+
+        return view('index')->with([
+            'foods' => $foods
+        ]);
+    }
 }
