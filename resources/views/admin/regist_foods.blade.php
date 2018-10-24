@@ -78,6 +78,7 @@
                         </div>
                      
                     </form>
+                    <p><a href="/home">back to home</a></p>
                 </div>
             </div>
         </div>

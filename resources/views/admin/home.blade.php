@@ -22,6 +22,11 @@
                         <p>Delete Cuisine</p>
                         <p><a href="/delete/foods">delete</a></p>
                     </div>
+
+                    <div>
+                        <p>Delete Restaurant</p>
+                        <p><a href="/delete/restaurants">delete</a></p>
+                    </div>
                 </div>
             </div>
         </div>

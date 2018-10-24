@@ -6,6 +6,22 @@ html{
 a {
     text-decoration: none;
 }
+body{
+    height: 100vh;
+    transition: all 1s;
+}
+header{
+    height: 10vh;
+}
+article{
+    background-color: #F8FFF4;
+    width: 100%;
+    padding: 2% 0;
+    height: 65vh;
+}
+footer{
+    height: 10vh;
+}
 
 /* ヘッダー */
 /*メニューの開閉*/
@@ -14,7 +30,7 @@ a {
     position: absolute;
     right: 20px;
     top: 20px;
-    width: 30px;
+    width: 50px;
     z-index: 99;
     cursor: pointer;
 }
@@ -87,16 +103,13 @@ a {
     height: 100%;
     color: #fff;
     font-size: 10rem;
-    font-weight: bold;
     text-decoration: none;
     position: absolute;
     z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-shadow: 3px 3px 3px black;
 }
-
 .gnav__menu__item a:hover +.gnav__menu__background{
     color: #666;
     transform: scale(1.2);
@@ -108,7 +121,7 @@ h1{
     align-content: center;
     justify-content: center;
     width: 100%;
-    font-size: 5rem;
+    font-size: 7rem;
     padding: 1% 0 2% 0;
 }
 h1 a{
@@ -125,12 +138,6 @@ h1 a{
 
 /* メインコンテンツ */
 /* メインコンテンツ＿トップ */
-article{
-    background-color: #F8FFF4;
-    width: 100%;
-    padding: 2% 0;
-}
-
 .food{
     width: 100%;
     text-align: center;
@@ -150,6 +157,7 @@ article{
     text-align: center;
     padding: 8% 0;
     background-color: #474350;
+    cursor: pointer;
 }
 .swiper-slide .more a {
     text-decoration: none;
@@ -166,46 +174,96 @@ article{
 /* left_cont */
 #left_cont{
     width: 40%;
-    height: 100%:
+    height: 100%;
     overflow: hidden;
+    margin: auto 0;
 }
 
 /* right_cont */
 #right_cont{
     width: 60%;
     overflow: hidden;
-    background-color: aqua;
-    padding: 2% 0 2% 2%;
+    padding: 0 0 0 5%;
+    margin: auto 0;
 }
 .food_title{
-    font-size: 4rem;
+    font-size: 5rem;
     padding: 0 0 3% 0;
 }
 .food_genre{
     font-size: 3rem;
-    padding: 0 0 3% 3%;
+    padding: 0 0 2% 3%;
 }
 .food_review{
-    font-size: 2rem;
-    padding: 0 0 1% 3%;
-    line-height: 2rem;
-    letter-spacing: 0.5rem;
+    font-size: 2.5rem;
+    padding: 0 0 2% 3%;
+    line-height: 2.5rem;
+    letter-spacing: 0.3rem;
 }
 .food_price{
-    font-size: 3rem;
-    padding: 0 0 1% 0;
+    font-size: 4rem;
+    padding: 0 0 2% 0;
     display: flex;
     justify-content: flex-end;
+    font-weight: bold;
 }
 .shop_url{
-    font-size: 2rem;
+    font-size: 4rem;
+    display: flex;
+    justify-content: center;
+}
+
+.square_btn{
+    display: inline-block;
+    position: relative;
+    padding: 0.5em 1.4em;
+    text-decoration: none;
+    background: #474350;/*ボタン色*/
+    color: #FFF;
+    border-bottom: solid 5px #000;/*ボタン色より暗めに*/
+    border-right: solid 5px #000;/*ボタン色より暗めに*/
+    border-radius: 10px;
+}
+.square_btn:before{    
+    content: " ";
+    position: absolute;
+    bottom: -5px;
+    left: -1px;
+    width: 0;
+    height: 0;
+    border-width: 0 6px 6px 0px;
+    border-style: solid;
+    border-color: transparent;
+    border-bottom-color: #FFF;
+}
+.square_btn:after{   
+    content: " ";
+    position: absolute;
+    top: -1px;
+    right: -5px;
+    width: 0;
+    height: 0;
+    border-width: 0px 6px 6px 0px;
+    border-style: solid;
+    border-color: #FFF;
+    border-bottom-color: transparent;
+}
+.square_btn:hover{ /*ボタンを押したとき*/
+    border:none;
+    -ms-transform: translate(6px,6px);
+    -webkit-transform: translate(6px,6px);
+    transform: translate(6px,6px);
+}
+
+.square_btn:active:after,.square_btn:active:before {
+    content: none;/*ボタンを押すと線が消える*/
 }
 /* フッター */
 .dummy_pic{
     display: flex;
     justify-content: center;
     padding: 1% 0 0 0;
-    cursor: pointer;
+    cursor: not-allowed;
 }
 .dummy_pic img {
     width: 5%;

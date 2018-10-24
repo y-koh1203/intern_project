@@ -315,11 +315,11 @@
 /* Touch Swipe
 --------------------------------------------------*/
 .sp-grab {
-	cursor: url(images/openhand.cur), move;
+    cursor: grab;
 }
 
 .sp-grabbing {
-	cursor: url(images/closedhand.cur), move;
+    cursor: grabbing;
 }
 
 .sp-selectable {

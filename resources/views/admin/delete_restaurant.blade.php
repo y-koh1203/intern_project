@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">飲食店の登録</div>
+                <div class="panel-heading">飲食店の削除</div>
 
                 <div class="panel-body">
                     @if (session('status'))
@@ -14,7 +14,9 @@
                         </div>
                     @endif
 
-                    {!! Form::open(['url' => '/regist/restaurant/insert', 'method' => 'post']) !!}
+                    <form action="/delete/restaurants/exec" method="post">
+
+                        {{ csrf_field() }}
 
                         {{--成功時のメッセージ--}}
                         @if (session('success'))
@@ -31,33 +33,26 @@
                             </div>
                         @endif
 
-
+                        @if(count($data) > 0)
                         <div class="form-group">
-                            {!! Form::label('name','店舗名', ['class' => 'control-label']) !!}
-                            {!! Form::text('name') !!}
+                            {!! Form::label('name','飲食店名', ['class' => 'control-label']) !!}
+                            @foreach($data as $datum)
+                            <div>
+                                <input type="checkbox" name="restaurants[]" value="{{$datum->id}}">{{$datum->name}}
+                            </div>
+                            @endforeach
                         </div>
+                        @else
+                        <div>削除できるデータがありません。</div>
+                        @endif
 
+                        @if(count($data) > 0)
                         <div class="form-group">
-                            {!! Form::label('address','住所', ['class' => 'control-label']) !!}
-                            {!! Form::text('address') !!}
+                            {!! Form::submit('削除', ['class' => 'btn btn-default']) !!}
                         </div>
-
-                        <div class="form-group">
-                            <p>{!! Form::label('body','説明', ['class' => 'control-label']) !!}</p>
-                            {!! Form::textarea('body') !!}
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('url','URL', ['class' => 'control-label']) !!}
-                            {!! Form::text('url') !!}
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::submit('登録', ['class' => 'btn btn-default']) !!}
-                        </div>
-
-                       
-                    {!! Form::close() !!}
+                        @endif
+                     
+                    </form>
                     <p><a href="/home">back to home</a></p>
                 </div>
             </div>

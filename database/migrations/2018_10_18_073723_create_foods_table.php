@@ -23,8 +23,8 @@ class CreateFoodsTable extends Migration
             $table->string('body');
             $table->integer('price');
             $table->string('image_path1');
-            $table->string('image_path2');
-            $table->string('image_path3');
+            $table->string('image_path2')->nullable();
+            $table->string('image_path3')->nullable();
             $table->timestamps();
 
             $table->foreign('restaurant_id')->references('id')->on('restaurant')->onDelete('cascade');

@@ -16,12 +16,17 @@ Route::get('/japanese', 'IndexController@sortJapanese');
 Route::get('/western', 'IndexController@sortWestern');
 Route::get('/chinese', 'IndexController@sortChinese');
 
+Route::get('/foods/detail/{id}','CousineController@cousineDetail');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/delete/foods','HomeController@deleteFoods');
 Route::post('/delete/foods/exec','HomeController@execDelete');
+
+Route::get('/delete/restaurants','HomeController@deleteRestaurants');
+Route::post('/delete/restaurants/exec','HomeController@execDeleteRestaurants');
 
 Route::get('/regist/restaurant','HomeController@insertRestaurant');
 Route::post('/regist/restaurant/insert','HomeController@registerRestaurant');

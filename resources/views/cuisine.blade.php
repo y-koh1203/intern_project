@@ -4,15 +4,50 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link href="../css/html5reset-1.6.1.css" rel="stylesheet" type="text/css">
-        <link href="../css/design.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" type="text/css" href="../css/slider-pro.css" media="screen" />
+        <link href="{{asset('/css/html5reset-1.6.1.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{asset('/css/design.css')}}" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="{{asset('/css/slider-pro.css')}}" media="screen" />
         <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
-        <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
-        <script type="text/javascript" src="../js/menu.js"></script>
-        <script src="../js/jquery.sliderPro.min.js"></script>
+        <script type="text/javascript" src="{{asset('/js/jquery-3.3.1.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('/js/menu.js')}}"></script>
+        <script src="{{asset('/js/jquery.sliderPro.min.js')}}"></script>
         <title>Document</title>
         <style>
+            /* @font-face{
+                font-family:"logo_font";
+                src:url("../fonts/corp_round_v1.ttf");
+            }
+            @font-face{
+                font-family:"main_font";
+                src:url("../fonts/bokutachi.otf");
+            }
+            @font-face{
+                font-family:"jp_font";
+                src:url("../fonts/AiharaHudemojiKaisho3.00.ttf")
+            }
+            @font-face{
+                font-family:"us_font";
+                src:url("../fonts/cinecaption226.ttf")
+            }
+            @font-face{
+                font-family:"cn_font";
+                src:url("../fonts/esenapaj.otf")
+            }
+            body{
+                font-family:"main_font";
+            }
+            h1 a{
+                font-family:"logo_font";
+            }
+            .jp_font a{
+                font-family:"jp_font";
+            }
+            .us_font a{
+                font-family:"us_font";
+            }
+            .cn_font a{
+                font-family:"cn_font";
+            } */
             /*前矢印のアイコンフォント*/
             .sp-next-arrow:before {
                 font-family: FontAwesome !important;
@@ -36,65 +71,58 @@
             <nav class="gnav">
                 <div class="gnav__wrap">
                     <ul class="gnav__menu">
-                        <li class="gnav__menu__item"><a href="#">和</a><div class="gnav__menu__background jp"></div></li>
-                        <li class="gnav__menu__item"><a href="#">洋</a><div class="gnav__menu__background us"></div></li>
-                        <li class="gnav__menu__item"><a href="#">中</a><div class="gnav__menu__background cn"></div></li>
+                        <li class="gnav__menu__item"><a href="#">和食</a><div class="gnav__menu__background jp"></div></li>
+                        <li class="gnav__menu__item"><a href="#">洋食</a><div class="gnav__menu__background us"></div></li>
+                        <li class="gnav__menu__item"><a href="#">中華</a><div class="gnav__menu__background cn"></div></li>
                     </ul>
                 </div><!--gnav-wrap-->
             </nav>
-            <h1><a href="index.html"><span class="space"><span class="initial">M</span>ina</span><span class="space"><span class="initial">M</span>ori</span><span class="initial">G</span>ourmet</a></h1>
+            <h1><a href="/"><span class="space"><span class="initial">M</span>ina</span><span class="space"><span class="initial">M</span>ori</span><span class="initial">G</span>ourmet</a></h1>
         </header>
+        @foreach($foods as $food)
         <article>
             <div id="main_cont">
                 <div id="left_cont">
                     <!-- ↓スライダー本体 -->
                     <div id="simple" class="slider-pro">
                         <div class="sp-slides">
+                            @if($food->image_path1 != null)
                             <div class="sp-slide">
-                                <img class="sp-image" src="../images/IMG_7938.JPG" />
+                                <img class="sp-image" src="{{ url('storage/images/foods/'.$food->image_path1) }}" />
                             </div>
+                            @endif
+                            @if($food->image_path2 != null)
                             <div class="sp-slide">
-                                <img class="sp-image" src="../images/IMG_7937.JPG" />
+                                <img class="sp-image" src="{{ url('storage/images/foods/'.$food->image_path2) }}" />
                             </div>
+                            @endif
+                            @if($food->image_path3 != null)
                             <div class="sp-slide">
-                                <img class="sp-image" src="../images/IMG_7939.JPG" />
+                                <img class="sp-image" src="{{ url('storage/images/foods/'.$food->image_path3) }}" />
                             </div>
-                            <div class="sp-slide">
-                                <img class="sp-image" src="../images/IMG_7947.JPG" />
-                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>
                 <div id="right_cont">
-                    <div class="food_title">マルゲリータ</div>
-                    <div class="food_genre">洋</div>
+                    <div class="food_title">{{$food->name}}</div>
+                    <div class="food_genre">{{$food->genre}}</div>
                     <div class="food_review">
-                        ピッツァの登場。
-                        よく見ると、切らないで出してくれてますね。<br>
-                        これは切り口からトマトソースの水分やオリーブ油が皿の底
-                        に流れて生地に染み込まないよう配慮しているのだと思われます。
-                        他と明らかに違ったのは、他店と比べて真ん中部分も生地が
-                        比較的厚め。<br>
-                        なので、耳だけでなく全体的にモチモチ感を感じることが出来る♪
-                        トマトソースもたっぷりで、チーズもしっかり。<br>
-                        この味わいで600円は有り得ない安さ！
-                        なんだか、申し訳なく思ってしまうほど安いのに美味しかった。<br>
-                        この店だったら一度はやってみたかったピッツァ2枚食べにも挑戦してみたくなる、笑<br>
-                        2枚食べても1200円だから絶対お得！<br>
-                        もう少し早く知っておきたかったな。ご馳走さまでした！
+                        {{$food->body}}
                     </div>
-                    <div class="food_price">価格￥600</div>
-                    <div class="shop_url"><a href="https://tabelog.com/osaka/A2701/A270103/27046664/" target="_blank">Pizzeria Va Booo（ピッツェリア・ヴァ・ブー）→</a></div>
+                    <div class="food_price">価格￥{{$food->price}}</div>
+                    <div class="shop_url"><a href="{{$r_url}}" target="_blank" class="square_btn">{{$r_name}}→</a></div>
                 </div>
             </div>
         </article>
+        @endforeach
         <footer>
             <div class="dummy_pic">
-                <img src="../images/food_udon_zaru.png">
-                <img src="../images/food_one_plate.png">
-                <img src="../images/cha-han1.png">
-                <img src="../images/salad_reisyabu.png">
-                <img src="../images/food_karaage_lemon.png">
+                <img src="{{ url('storage/images/food_udon_zaru.png') }}">
+                <img src="{{ url('storage/images/food_one_plate.png') }}">
+                <img src="{{ url('storage/images/cha-han1.png') }}">
+                <img src="{{ url('storage/images/salad_reisyabu.png') }}">
+                <img src="{{ url('storage/images/food_karaage_lemon.png') }}">
             </div>
             <div class="copyright">Copyright©2017 clarenet. All Rights Reserved. & Created by Tera and Yama</div>
         </footer>

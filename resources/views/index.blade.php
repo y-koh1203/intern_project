@@ -13,7 +13,44 @@
         <title>TOP</title>
         <!-- Demo styles -->
         <style>
-            .swiper-container {
+            /* 
+            @font-face{
+                font-family:"logo_font";
+                src:url("../fonts/corp_round_v1.ttf");
+            }
+            @font-face{
+                font-family:"main_font";
+                src:url("../fonts/bokutachi.otf");
+            }
+            @font-face{
+                font-family:"jp_font";
+                src:url("../fonts/AiharaHudemojiKaisho3.00.ttf")
+            }
+            @font-face{
+                font-family:"us_font";
+                src:url("../fonts/cinecaption226.ttf")
+            }
+            @font-face{
+                font-family:"cn_font";
+                src:url("../fonts/esenapaj.otf")
+            }
+            body{
+                font-family:"main_font";
+            }
+            h1 a{
+                font-family:"logo_font";
+            }
+            .jp_font a{
+                font-family:"jp_font";
+            }
+            .us_font a{
+                font-family:"us_font";
+            }
+            .cn_font a{
+                font-family:"cn_font";
+            }
+            */
+           .swiper-container {
                 width: 100%;
                 padding: 0 0 3% 0;
                 background-color: transparent;
@@ -51,9 +88,9 @@
             <nav class="gnav">
                 <div class="gnav__wrap">
                     <ul class="gnav__menu">
-                        <li class="gnav__menu__item"><a href="/japanese">和</a><div class="gnav__menu__background jp"></div></li>
-                        <li class="gnav__menu__item"><a href="/western">洋</a><div class="gnav__menu__background us"></div></li>
-                        <li class="gnav__menu__item"><a href="/chinese">中</a><div class="gnav__menu__background cn"></div></li>
+                        <li class="gnav__menu__item"><a href="/japanese">和食</a><div class="gnav__menu__background jp"></div></li>
+                        <li class="gnav__menu__item"><a href="/western">洋食</a><div class="gnav__menu__background us"></div></li>
+                        <li class="gnav__menu__item"><a href="/chinese">中華</a><div class="gnav__menu__background cn"></div></li>
                     </ul>
                 </div><!--gnav-wrap-->
             </nav>
@@ -66,10 +103,10 @@
                     @if(count($foods) > 0)
                         @foreach ($foods as $food)
                         <div class="swiper-slide">
-                            <div class="food_pic"><img src="{{ url('storage/images/'.$food->image_path1) }}" alt=""></div>
+                            <div class="food_pic"><img src="{{ url('storage/images/foods/'.$food->image_path1) }}" alt=""></div>
                             <div class="food">{{$food->name}}</div>
                             <div class="food_category">{{$food->genre}}</div>
-                            <div class="more"><a href="/index/detail/{{$food->id}}">MORE</a></div>
+                            <div class="more"><a href="/foods/detail/{{$food->id}}">MORE</a></div>
                         </div>
                         @endforeach
                     @else

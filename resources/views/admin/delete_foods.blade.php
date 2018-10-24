@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    <form action="/delete/foods/exec" method="post" enctype="multipart/form-data">
+                    <form action="/delete/foods/exec" method="post">
 
                         {{ csrf_field() }}
 
@@ -53,6 +53,7 @@
                         @endif
                      
                     </form>
+                    <p><a href="/home">back to home</a></p>
                 </div>
             </div>
         </div>
