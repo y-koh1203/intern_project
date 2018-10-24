@@ -58,6 +58,15 @@
                 font-family: FontAwesome !important;
                 
             }
+            .jp{
+                background-image: url("{{ url('storage/images/MIL28021.JPG') }}");
+            }
+            .us{
+                background-image: url("{{ url('storage/images/pastas-1150032_1920.jpg') }}");
+            }
+            .cn{
+                background-image: url("{{ url('storage/images/MIL28091.JPG') }}");
+            }
         </style>
         
     </head>
